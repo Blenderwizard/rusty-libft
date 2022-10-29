@@ -1,3 +1,3 @@
-pub fn ft_strlen(s: String) -> usize {
+pub fn ft_strlen(s: &str) -> usize {
 	return s.len();
 }

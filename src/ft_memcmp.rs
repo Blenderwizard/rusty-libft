@@ -1,4 +1,4 @@
-pub fn ft_memcmp(b1: & Vec<u8>, b2: & Vec<u8>, mut len: usize) -> i32 {
+pub fn ft_memcmp(b1: & [u8], b2: & [u8], mut len: usize) -> i32 {
 	if b1.len() > b2.len() && b2.len() < len {
 		return b1[b2.len()].into()
 	} else if b1.len() < b2.len() && b1.len() < len {

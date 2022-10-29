@@ -6,6 +6,7 @@ pub mod ft_isascii;
 pub mod ft_isdigit;
 pub mod ft_islower;
 pub mod ft_isprint;
+pub mod ft_isspace;
 pub mod ft_isupper;
 pub mod ft_memchr;
 pub mod ft_memcmp;
@@ -48,37 +49,48 @@ mod mem_functs {
 	
 	#[test]
 	fn easy_ft_memcmp() {
-		let cmp1 = "Greetings".as_bytes().to_vec();
-		let cmp2 = "Greetings".as_bytes().to_vec();
+		let binding1 = "Greetings".as_bytes().to_vec();
+		let cmp1 = binding1.as_slice();
+		let binding2 = "Greetings".as_bytes().to_vec();
+		let cmp2 = binding2.as_slice();
 		let result = ft_memcmp(&cmp1, &cmp2, 9);
 		assert_eq!(result, 0);
-		let cmp1 = "Greetings".as_bytes().to_vec();
-		let cmp2 = "Greeting".as_bytes().to_vec();
+		
+		let binding1 = "Greetings".as_bytes().to_vec();
+		let cmp1 = binding1.as_slice();
+		let binding2 = "Greeting".as_bytes().to_vec();
+		let cmp2 = binding2.as_slice();
 		let result = ft_memcmp(&cmp1, &cmp2, 9);
 		assert_eq!(result, 115);
-		let cmp1 = "Greetings".as_bytes().to_vec();
-		let cmp2 = "Greeting".as_bytes().to_vec();
+
+	
+		let binding1 = "Greetings".as_bytes().to_vec();
+		let cmp1 = binding1.as_slice();
+		let binding2 = "Greeting".as_bytes().to_vec();
+		let cmp2 = binding2.as_slice();
 		let result = ft_memcmp(&cmp1, &cmp2, 8);
 		assert_eq!(result, 0);
 	}
 
 	#[test]
 	fn easy_ft_memset() {
+		let mut test: [u8; 3] = ['c' as u8, 'a' as u8, 't' as u8];
+		let leng = test.len();
+		let result = ft_memset(&mut test, 'o' as u8, leng);
+		let expected: [u8; 3] = ['o' as u8, 'o' as u8, 'o' as u8];
+		assert_eq!(result, &expected);
+		assert_eq!(&test, &expected);
+
 		let mut test = vec!['c' as u8, 'a' as u8, 't' as u8];
-		let mut leng = test.len();
-		let mut result = ft_memset(&mut test, 'o' as u8, leng);
-		let mut expected = vec!['o' as u8, 'o' as u8, 'o' as u8];
+		let result = ft_memset(&mut test, 'o' as u8, 1);
+		let expected = vec!['o' as u8, 'a' as u8, 't' as u8];
 		assert_eq!(result, &expected);
 		assert_eq!(&test, &expected);
-		test = vec!['c' as u8, 'a' as u8, 't' as u8];
-		result = ft_memset(&mut test, 'o' as u8, 1);
-		expected = vec!['o' as u8, 'a' as u8, 't' as u8];
-		assert_eq!(result, &expected);
-		assert_eq!(&test, &expected);
-		test = "Hello this is a very long string that I wrote for a test".as_bytes().to_vec();
-		leng = test.len();
-		result = ft_memset(&mut test, 'o' as u8, leng);
-		expected = "oooooooooooooooooooooooooooooooooooooooooooooooooooooooo".as_bytes().to_vec();
+
+		let mut test = "Hello this is a very long string that I wrote for a test".as_bytes().to_vec();
+		let leng = test.len();
+		let result = ft_memset(&mut test, 'o' as u8, leng);
+		let expected = "oooooooooooooooooooooooooooooooooooooooooooooooooooooooo".as_bytes().to_vec();
 		assert_eq!(result, &expected);
 		assert_eq!(&test, &expected);
 	}
@@ -90,27 +102,31 @@ mod str_functs {
 
 	#[test]
 	fn ascii_ft_strlen() {
-		let mut a = "This is a test";
-		let mut result = ft_strlen(a.to_string());
+		let a = "This is a test";
+		let result = ft_strlen(a);
 		assert_eq!(result, a.len());
-		a = "";
-		result = ft_strlen(a.to_string());
+
+		let a = "";
+		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
-		a = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		result = ft_strlen(a.to_string());
+
+		let a = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
 	}
 
 	#[test]
 	fn unicode_ft_strlen() {
-		let mut a = "邏 樂 洛 烙 珞 落";
-		let mut result = ft_strlen(a.to_string());
+		let a = "邏 樂 洛 烙 珞 落";
+		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
-		a = "A✄ ✆ E✇ ✈ D 0";
-		result = ft_strlen(a.to_string());
+
+		let a = "A✄ ✆ E✇ ✈ D 0";
+		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
-		a = "ણતથદધનપફબଉଊଋଌଏଐଓଔକ ୁ ୃ ୈ ୌ ୖ ୗஊஎஏஐஒஓ௯௰௱௲ఆఇఈఉఊహ ా ి ె ే ై ొ ో ౌ ్ౡഹ ാ ി ീ ു ൂ ൃ െ േะ ั า ี ึ ื ็ ้ ๊ ๋ ์ ํ ๎༼ ༽ႽႾႿჀḂḃḄḔḕḖḳḴḵṄṅṠṡṿἇἈἑἤἮἴἹ";
-		result = ft_strlen(a.to_string());
+
+		let a = "ણતથદધનપફબଉଊଋଌଏଐଓଔକ ୁ ୃ ୈ ୌ ୖ ୗஊஎஏஐஒஓ௯௰௱௲ఆఇఈఉఊహ ా ి ె ే ై ొ ో ౌ ్ౡഹ ാ ി ീ ു ൂ ൃ െ േะ ั า ี ึ ื ็ ้ ๊ ๋ ์ ํ ๎༼ ༽ႽႾႿჀḂḃḄḔḕḖḳḴḵṄṅṠṡṿἇἈἑἤἮἴἹ";
+		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
 	}
 }
@@ -122,7 +138,7 @@ mod to_functs {
 
 	#[test]
 	fn alphabet_ft_toupper() {
-		let a = "abcdefghijklmnopqrstuvwxyz".to_string();
+		let a = "abcdefghijklmnopqrstuvwxyz";
 		for i in a.chars() {
 			let result = ft_toupper(i);
 			assert_eq!(result, i.to_ascii_uppercase());
@@ -131,7 +147,7 @@ mod to_functs {
 
 	#[test]
 	fn symbols_ft_toupper() {
-		let a = "!@#$%^&*()123456789".to_string();
+		let a = "!@#$%^&*()123456789";
 		for i in a.chars() {
 			let result = ft_toupper(i);
 			assert_eq!(result, i.to_ascii_uppercase());
@@ -140,7 +156,7 @@ mod to_functs {
 
 	#[test]
 	fn alphabet_ft_tolower() {
-		let a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".to_string();
+		let a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for i in a.chars() {
 			let result = ft_tolower(i);
 			assert_eq!(result, i.to_ascii_lowercase());
@@ -149,7 +165,7 @@ mod to_functs {
 
 	#[test]
 	fn symbols_ft_tolower() {
-		let a = "!@#$%^&*()123456789".to_string();
+		let a = "!@#$%^&*()123456789";
 		for i in a.chars() {
 			let result = ft_tolower(i);
 			assert_eq!(result, i.to_ascii_lowercase());
