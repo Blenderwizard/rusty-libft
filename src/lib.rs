@@ -8,39 +8,44 @@ pub mod ft_islower;
 pub mod ft_isprint;
 pub mod ft_isspace;
 pub mod ft_isupper;
+pub mod ft_itoa;
 pub mod ft_memchr;
 pub mod ft_memcmp;
 pub mod ft_memcpy;
 pub mod ft_memmove;
 pub mod ft_memset;
+pub mod ft_putchar_fd;
+pub mod ft_putchar;
+pub mod ft_putendl_fd;
+pub mod ft_putendl;
+pub mod ft_putnbr_fd;
+pub mod ft_putnbr;
+pub mod ft_putstr_fd;
+pub mod ft_putstr;
+pub mod ft_split;
 pub mod ft_strchr;
+pub mod ft_striteri;
+pub mod ft_strjoin;
 pub mod ft_strlcat;
 pub mod ft_strlcpy;
 pub mod ft_strlen;
+pub mod ft_strmapi;
 pub mod ft_strncmp;
 pub mod ft_strnstr;
 pub mod ft_strrchr;
+pub mod ft_strtrim;
+pub mod ft_substr;
 pub mod ft_tolower;
 pub mod ft_toupper;
-// use ft_atoi::ft_atoi;
-// use ft_bzero::ft_bzero;
-// use ft_isalnum::ft_isalnum;
-// use ft_isalpha::ft_isalpha;
-// use ft_isascii::ft_isascii;
-// use ft_isdigit::ft_isdigit;
-// use ft_islower::ft_islower;
-// use ft_isprint::ft_isprint;
-// use ft_isupper::ft_isupper;
-// use ft_memchr::ft_memchr;
-// use ft_memcmp::ft_memcmp;
-// use ft_memcpy::ft_memcpy;
-// use ft_memmove::ft_memmove;
-// use ft_strchr::ft_strchr;
-// use ft_strlcat::ft_strlcat;
-// use ft_strlcpy::ft_strlcpy;
-// use ft_strncmp::ft_strncmp;
-// use ft_strnstr::ft_strnstr;
-// use ft_strrchr::ft_strrchr;
+
+#[cfg(test)]
+mod atoi_funct {}
+
+#[cfg(test)]
+mod itoa_funct {}
+
+#[cfg(test)]
+mod put_functs {}
 
 #[cfg(test)]
 mod mem_functs {
@@ -95,6 +100,9 @@ mod mem_functs {
 		assert_eq!(&test, &expected);
 	}
 }
+
+#[cfg(test)]
+mod split_funct {}
 
 #[cfg(test)]
 mod str_functs {

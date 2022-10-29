@@ -18,7 +18,7 @@ pub fn ft_atoi(s: &str) -> i32 {
 		}
 		if ft_isdigit(c) {
 			begun = true;
-			total = (total * 10) + c.to_digit(10).unwrap() as u64;
+			total = (total * 10) + (c as u64) - 48;
 		}
 	}
 	if total > std::i64::MAX as u64 && sign > 0 {
