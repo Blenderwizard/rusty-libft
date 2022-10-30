@@ -1,4 +1,4 @@
-pub fn ft_memchr(s: &str, c: u8) -> Option<&str> {
+pub fn ft_strrchr(s: &str, c: u8) -> Option<&str> {
 	let mut i = 0;
 	for sit in s.chars().rev() {
 		if sit as u8 == c {
