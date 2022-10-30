@@ -42,6 +42,90 @@ pub mod ft_toupper;
 mod atoi_funct {}
 
 #[cfg(test)]
+mod is_functs {
+	use crate::ft_isalnum::ft_isalnum;
+	use crate::ft_isalpha::ft_isalpha;
+	use crate::ft_isascii::ft_isascii;
+	use crate::ft_isdigit::ft_isdigit;
+	use crate::ft_islower::ft_islower;
+	use crate::ft_isprint::ft_isprint;
+	use crate::ft_isspace::ft_isspace;
+	use crate::ft_isupper::ft_isupper;
+	
+	#[test]
+	fn test_ft_isalnum() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_isalnum(i);
+			assert_eq!(result, i.is_ascii_alphanumeric());
+		}
+	}
+
+	#[test]
+	fn test_ft_isalpha() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_isalpha(i);
+			assert_eq!(result, i.is_ascii_alphabetic());
+		}
+	}
+
+	#[test]
+	fn test_ft_isascii() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_isascii(i);
+			assert_eq!(result, i.is_ascii());
+		}
+	}
+
+	#[test]
+	fn test_ft_isdigit() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_isdigit(i);
+			assert_eq!(result, i.is_ascii_digit());
+		}
+	}
+
+	#[test]
+	fn test_ft_islower() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_islower(i);
+			assert_eq!(result, i.is_ascii_lowercase());
+		}
+	}
+
+	#[test]
+	fn test_ft_isprint() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_isprint(i);
+			assert_eq!(result, i.is_ascii_graphic() || i == ' ');
+		}
+	}
+
+	#[test]
+	fn test_ft_isspace() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_isspace(i);
+			assert_eq!(result, i.is_ascii_whitespace());
+		}
+	}
+
+	#[test]
+	fn test_ft_isupper() {
+		let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456780!@#$%^&*(),.<>/?;':\"\\[]{}-=_+ \n\t\r`~";
+		for i in a.chars() {
+			let result = ft_isupper(i);
+			assert_eq!(result, i.is_ascii_uppercase());
+		}
+	}
+}
+
+#[cfg(test)]
 mod itoa_funct {}
 
 #[cfg(test)]
