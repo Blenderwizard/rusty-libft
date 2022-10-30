@@ -1,6 +1,7 @@
-use crate::ft_putstr_fd::ft_putstr_fd;
 use std::io;
+use std::io::Write;
 
 pub fn ft_putstr(s : &str) -> io::Result<()> {
-	return ft_putstr_fd(s, 1);
+	io::stdout().write_all(s.as_bytes())?;
+	Ok(())
 }

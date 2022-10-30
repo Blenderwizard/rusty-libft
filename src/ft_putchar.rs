@@ -1,6 +1,9 @@
-use crate::ft_putchar_fd::ft_putchar_fd;
 use std::io;
+use std::io::Write;
 
 pub fn ft_putchar(c : char) -> io::Result<()> {
-	return ft_putchar_fd(c, 1);
+	let bind = c.to_string();
+	let temp = bind.as_bytes();
+	io::stdout().write_all(temp)?;
+	Ok(())
 }
