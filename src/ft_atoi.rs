@@ -6,10 +6,10 @@ pub fn ft_atoi(s: &str) -> i32 {
 	let mut total: u64 = 0;
 	let mut sign: i8 = 1;
 	for c in s.chars() {
-		if ft_isspace(c) && !begun {
+		if ft_isspace(c) && begun == false {
 			continue;
 		} 
-		if c == '+' || c == '-' && !begun {
+		if (c == '+' || c == '-') && begun == false {
 			if c == '-' {
 				sign = -1;
 			}
@@ -19,7 +19,9 @@ pub fn ft_atoi(s: &str) -> i32 {
 		if ft_isdigit(c) {
 			begun = true;
 			total = (total * 10) + (c as u64) - 48;
+			continue;
 		}
+		break;
 	}
 	if total > std::i64::MAX as u64 && sign > 0 {
 		return -1;
