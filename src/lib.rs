@@ -39,7 +39,81 @@ pub mod ft_tolower;
 pub mod ft_toupper;
 
 #[cfg(test)]
-mod atoi_funct {}
+mod atoi_funct {
+	use crate::ft_atoi::ft_atoi;
+	
+	#[test]
+	fn test_ft_atoi() {
+		{
+			let ret = ft_atoi("1");
+			assert_eq!(ret, 1);
+		}
+		{
+			let ret = ft_atoi("a1");
+			assert_eq!(ret, 0);
+		}
+		{
+			let ret = ft_atoi("--1");
+			assert_eq!(ret, 0);
+		}
+		{
+			let ret = ft_atoi("++1");
+			assert_eq!(ret, 0);
+		}
+		{
+			let ret = ft_atoi("-1");
+			assert_eq!(ret, -1);
+		}
+		{
+			let ret = ft_atoi("+1");
+			assert_eq!(ret, 1);
+		}
+		{
+			let ret = ft_atoi("0");
+			assert_eq!(ret, 0);
+		}
+		{
+			let ret = ft_atoi("+101rust");
+			assert_eq!(ret, 101);
+		}
+		{
+			let ret = ft_atoi("+-101rust");
+			assert_eq!(ret, 0);
+		}
+		{
+			let ret = ft_atoi("-+101rust");
+			assert_eq!(ret, 0);
+		}
+		{
+			let ret = ft_atoi("               100");
+			assert_eq!(ret, 100);
+		}
+		{
+			let ret = ft_atoi("               -123");
+			assert_eq!(ret, -123);
+		}
+		{
+			let ret = ft_atoi("               2147483647");
+			assert_eq!(ret, 2147483647);
+		}
+		{
+			let ret = ft_atoi("               2147483648");
+			assert_eq!(ret, -2147483648);
+		}
+		{
+			let ret = ft_atoi("               -2147483648");
+			assert_eq!(ret, -2147483648);
+		}
+		{
+			let ret = ft_atoi("               4294967295");
+			assert_eq!(ret, -1);
+		}
+		{
+			let ret = ft_atoi("               -4294967295");
+			assert_eq!(ret, 1);
+		}
+	}
+}
 
 #[cfg(test)]
 mod is_functs {
@@ -127,77 +201,29 @@ mod is_functs {
 
 #[cfg(test)]
 mod itoa_funct {
-	use crate::ft_atoi::ft_atoi;
+	use crate::ft_itoa::ft_itoa;
 	
 	#[test]
-	fn test_ft_atoi() {
+	fn test_ft_itoa() {
 		{
-			let ret = ft_atoi("1");
-			assert_eq!(ret, 1);
+			let ret = ft_itoa(std::i32::MAX);
+			assert_eq!(ret, "2147483647");
 		}
 		{
-			let ret = ft_atoi("a1");
-			assert_eq!(ret, 0);
+			let ret = ft_itoa(std::i32::MIN);
+			assert_eq!(ret, "-2147483648");
 		}
 		{
-			let ret = ft_atoi("--1");
-			assert_eq!(ret, 0);
+			let ret = ft_itoa(-1);
+			assert_eq!(ret, "-1");
 		}
 		{
-			let ret = ft_atoi("++1");
-			assert_eq!(ret, 0);
+			let ret = ft_itoa(1);
+			assert_eq!(ret, "1");
 		}
 		{
-			let ret = ft_atoi("-1");
-			assert_eq!(ret, -1);
-		}
-		{
-			let ret = ft_atoi("+1");
-			assert_eq!(ret, 1);
-		}
-		{
-			let ret = ft_atoi("0");
-			assert_eq!(ret, 0);
-		}
-		{
-			let ret = ft_atoi("+101rust");
-			assert_eq!(ret, 101);
-		}
-		{
-			let ret = ft_atoi("+-101rust");
-			assert_eq!(ret, 0);
-		}
-		{
-			let ret = ft_atoi("-+101rust");
-			assert_eq!(ret, 0);
-		}
-		{
-			let ret = ft_atoi("               100");
-			assert_eq!(ret, 100);
-		}
-		{
-			let ret = ft_atoi("               -123");
-			assert_eq!(ret, -123);
-		}
-		{
-			let ret = ft_atoi("               2147483647");
-			assert_eq!(ret, 2147483647);
-		}
-		{
-			let ret = ft_atoi("               2147483648");
-			assert_eq!(ret, -2147483648);
-		}
-		{
-			let ret = ft_atoi("               -2147483648");
-			assert_eq!(ret, -2147483648);
-		}
-		{
-			let ret = ft_atoi("               4294967295");
-			assert_eq!(ret, -1);
-		}
-		{
-			let ret = ft_atoi("               -4294967295");
-			assert_eq!(ret, 1);
+			let ret = ft_itoa(-1);
+			assert_eq!(ret, "-1");
 		}
 	}
 }
@@ -264,7 +290,17 @@ mod split_funct {}
 
 #[cfg(test)]
 mod str_functs {
+	use crate::ft_strjoin::ft_strjoin;
 	use crate::ft_strlen::ft_strlen;
+
+	#[test]
+	fn tests_ft_strjoin() {
+		{
+			let a = "test"
+			let b = "test"
+			let result = ft_strjoin(a,b);
+		}
+	}
 
 	#[test]
 	fn ascii_ft_strlen() {
