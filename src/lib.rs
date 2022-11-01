@@ -292,6 +292,7 @@ mod split_funct {}
 mod str_functs {
 	use crate::ft_strjoin::ft_strjoin;
 	use crate::ft_strlen::ft_strlen;
+	use crate::ft_strtrim::ft_strtrim;
 	use crate::ft_substr::ft_substr;
 
 	#[test]
@@ -338,6 +339,30 @@ mod str_functs {
 		let a = "ણતથદધનપફબଉଊଋଌଏଐଓଔକ ୁ ୃ ୈ ୌ ୖ ୗஊஎஏஐஒஓ௯௰௱௲ఆఇఈఉఊహ ా ి ె ే ై ొ ో ౌ ్ౡഹ ാ ി ീ ു ൂ ൃ െ േะ ั า ี ึ ื ็ ้ ๊ ๋ ์ ํ ๎༼ ༽ႽႾႿჀḂḃḄḔḕḖḳḴḵṄṅṠṡṿἇἈἑἤἮἴἹ";
 		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
+	}
+
+	#[test]
+	fn test_ft_strtrim() {
+		{
+			let a = "A normal string";
+			let result = ft_strtrim(a, " ");
+			assert_eq!(result, a);
+		}
+		{
+			let a = "A normal string";
+			let result = ft_strtrim(a, "");
+			assert_eq!(result, a);
+		}
+		{
+			let a = "              A normal string                       ";
+			let result = ft_strtrim(a, " ");
+			assert_eq!(result, "A normal string");
+		}
+		{
+			let a = "              A normal string                       ";
+			let result = ft_strtrim(a, " Ag");
+			assert_eq!(result, "normal strin");
+		}
 	}
 
 	#[test]
