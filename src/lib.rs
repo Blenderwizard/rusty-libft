@@ -296,9 +296,16 @@ mod str_functs {
 	#[test]
 	fn tests_ft_strjoin() {
 		{
-			let a = "test"
-			let b = "test"
+			let a = "test";
+			let b = "test";
 			let result = ft_strjoin(a,b);
+			assert_eq!(result, "testtest")
+		}
+		{
+			let a = "one \n";
+			let b = "two \n\n";
+			let result = ft_strjoin(a,b);
+			assert_eq!(result, "one \ntwo \n\n")
 		}
 	}
 
