@@ -292,6 +292,7 @@ mod split_funct {}
 mod str_functs {
 	use crate::ft_strjoin::ft_strjoin;
 	use crate::ft_strlen::ft_strlen;
+	use crate::ft_substr::ft_substr;
 
 	#[test]
 	fn tests_ft_strjoin() {
@@ -337,6 +338,35 @@ mod str_functs {
 		let a = "ણતથદધનપફબଉଊଋଌଏଐଓଔକ ୁ ୃ ୈ ୌ ୖ ୗஊஎஏஐஒஓ௯௰௱௲ఆఇఈఉఊహ ా ి ె ే ై ొ ో ౌ ్ౡഹ ാ ി ീ ു ൂ ൃ െ േะ ั า ี ึ ื ็ ้ ๊ ๋ ์ ํ ๎༼ ༽ႽႾႿჀḂḃḄḔḕḖḳḴḵṄṅṠṡṿἇἈἑἤἮἴἹ";
 		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
+	}
+
+	#[test]
+	fn test_ft_substr() {
+		{
+			let a = "This is a test string";
+			let result = ft_substr(a, 22, 10);
+			assert_eq!(result, None)
+		}
+		{
+			let a = "This is a test string";
+			let result = ft_substr(a, 0, 0);
+			assert_eq!(result, None)
+		}
+		{
+			let a = "This is a test string";
+			let result = ft_substr(a, 0, 4);
+			assert_eq!(result, Some("This".to_string()))
+		}
+		{
+			let a = "This is a test string";
+			let result = ft_substr(a, 5, 4);
+			assert_eq!(result, Some("is a".to_string()))
+		}
+		{
+			let a = "This is a test string";
+			let result = ft_substr(a, 15, 10);
+			assert_eq!(result, Some("string".to_string()))
+		}
 	}
 }
 
