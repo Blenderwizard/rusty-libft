@@ -1,5 +1,7 @@
 use crate::ft_strlen::ft_strlen;
 
+/// Returns a new String starting at index start of length len or
+/// size of string, which ever is smaller, or None. 
 pub fn ft_substr(s: &str, start: usize, mut len: usize) -> Option<String> {
 	if start > ft_strlen(s) {
 		return None;

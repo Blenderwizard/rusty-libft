@@ -1,7 +1,8 @@
 use crate::ft_putstr::ft_putstr;
 use std::io;
 
-pub fn ft_putendl(n: i32) -> io::Result<()> {
+/// Writes a string representation of a number to stdout.
+pub fn ft_putnbr(n: i32) -> io::Result<()> {
 	let s = n.to_string();
-	ft_putstr(&(s.to_owned() + "\n"))
+	ft_putstr(&(s.to_owned()))
 }

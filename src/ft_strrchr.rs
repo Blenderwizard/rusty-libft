@@ -1,10 +1,10 @@
-pub fn ft_strrchr(s: &str, c: u8) -> Option<&str> {
-	let mut i = 0;
+pub fn ft_strrchr(s: &str, c: char) -> Option<&str> {
+	let mut i = s.len();
 	for sit in s.chars().rev() {
-		if sit as u8 == c {
-			return Some(&s[i..s.len()]);
+		if sit == c {
+			return Some(&s[i-1..s.len()]);
 		}
-		i += 1;
+		i -= 1;
 	}
 	return None;
 }

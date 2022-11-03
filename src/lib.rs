@@ -1,3 +1,11 @@
+//! This crate is a Rust version of the first project of the 42 Common Core, libft.
+//! Libft is a project where various libc functions and non-libc functions had to be
+//! reimplmented. This project was later used in future projects where it was allowed.
+//!
+//! These functions are not a 100% match with their c counterparts, and this project was
+//! done more for learning rust than reimplementing the functions.
+
+
 pub mod ft_atoi;
 pub mod ft_bzero;
 pub mod ft_isalnum;
@@ -109,8 +117,8 @@ mod atoi_funct {
 			assert_eq!(ret, -1);
 		}
 		{
-			let ret = ft_atoi("               -4294967295");
-			assert_eq!(ret, 1);
+			let ret = ft_atoi("               -4294967296");
+			assert_eq!(ret, 0);
 		}
 	}
 }
@@ -233,11 +241,43 @@ mod put_functs {}
 
 #[cfg(test)]
 mod mem_functs {
+	use crate::ft_memchr::ft_memchr;
 	use crate::ft_memcmp::ft_memcmp;
+	// use crate::ft_memcpy::ft_memcpy;
+	// use crate::ft_memmove::ft_memmove;
 	use crate::ft_memset::ft_memset;
 	
 	#[test]
-	fn easy_ft_memcmp() {
+	fn tests_ft_memchr() {
+		let binding = "Greetings".as_bytes().to_vec();
+		let data = binding.as_slice();
+		let result = ft_memchr(data, 'e' as u8, 7);
+		assert_eq!(result, Some(&data[2..7]));
+
+		let binding = "Greetings".as_bytes().to_vec();
+		let data = binding.as_slice();
+		let result = ft_memchr(data, 'a' as u8, 10);
+		assert_eq!(result, None);
+
+		let binding = "Greetings".as_bytes().to_vec();
+		let data = binding.as_slice();
+		let result = ft_memchr(data, 'e' as u8, 2);
+		assert_eq!(result, None);
+
+		let binding = "Greetings".as_bytes().to_vec();
+		let data = binding.as_slice();
+		let result = ft_memchr(data, 'e' as u8, 12);
+		assert_eq!(result, Some(&data[2..data.len()]));
+
+
+		let binding = "Greetings".as_bytes().to_vec();
+		let data = binding.as_slice();
+		let result = ft_memchr(data, 'G' as u8, 12);
+		assert_eq!(result, Some(&data[0..data.len()]));
+	}
+
+	#[test]
+	fn tests_ft_memcmp() {
 		let binding1 = "Greetings".as_bytes().to_vec();
 		let cmp1 = binding1.as_slice();
 		let binding2 = "Greetings".as_bytes().to_vec();
@@ -252,7 +292,6 @@ mod mem_functs {
 		let result = ft_memcmp(&cmp1, &cmp2, 9);
 		assert_eq!(result, 115);
 
-	
 		let binding1 = "Greetings".as_bytes().to_vec();
 		let cmp1 = binding1.as_slice();
 		let binding2 = "Greeting".as_bytes().to_vec();
@@ -261,8 +300,18 @@ mod mem_functs {
 		assert_eq!(result, 0);
 	}
 
+	// #[test]
+	// fn tests_ft_memcpy() {
+
+	// }
+
 	#[test]
-	fn easy_ft_memset() {
+	fn tests_ft_memmove() {
+
+	}
+
+	#[test]
+	fn tests_ft_memset() {
 		let mut test: [u8; 3] = ['c' as u8, 'a' as u8, 't' as u8];
 		let leng = test.len();
 		let result = ft_memset(&mut test, 'o' as u8, leng);
@@ -290,10 +339,28 @@ mod split_funct {}
 
 #[cfg(test)]
 mod str_functs {
+	use crate::ft_strchr::ft_strchr;
 	use crate::ft_strjoin::ft_strjoin;
 	use crate::ft_strlen::ft_strlen;
+	// use crate::ft_strnstr::ft_strnstr;
+	use crate::ft_strrchr::ft_strrchr;
 	use crate::ft_strtrim::ft_strtrim;
 	use crate::ft_substr::ft_substr;
+
+	#[test]
+	fn tests_ft_strchr() {
+		let data = "Greetings";
+		let result = ft_strchr(data, 'e');
+		assert_eq!(result, Some(&data[2..data.len()]));
+
+		let data = "Greetings";
+		let result = ft_strchr(data, 'a');
+		assert_eq!(result, None);
+
+		let data = "Greetings";
+		let result = ft_strchr(data, 'G');
+		assert_eq!(result, Some(&data[0..data.len()]));
+	}
 
 	#[test]
 	fn tests_ft_strjoin() {
@@ -339,6 +406,21 @@ mod str_functs {
 		let a = "ણતથદધનપફબଉଊଋଌଏଐଓଔକ ୁ ୃ ୈ ୌ ୖ ୗஊஎஏஐஒஓ௯௰௱௲ఆఇఈఉఊహ ా ి ె ే ై ొ ో ౌ ్ౡഹ ാ ി ീ ു ൂ ൃ െ േะ ั า ี ึ ื ็ ้ ๊ ๋ ์ ํ ๎༼ ༽ႽႾႿჀḂḃḄḔḕḖḳḴḵṄṅṠṡṿἇἈἑἤἮἴἹ";
 		let result = ft_strlen(&a);
 		assert_eq!(result, a.len());
+	}
+
+	#[test]
+	fn test_ft_strrchr() {
+		let data = "Greetings";
+		let result = ft_strrchr(data, 'e');
+		assert_eq!(result, Some(&data[3..data.len()]));
+
+		let data = "Greetings";
+		let result = ft_strrchr(data, 'a');
+		assert_eq!(result, None);
+
+		let data = "Greetings";
+		let result = ft_strrchr(data, 'G');
+		assert_eq!(result, Some(&data[0..data.len()]));
 	}
 
 	#[test]
